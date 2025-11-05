@@ -20,5 +20,8 @@ else:
 driver.find_element(By.ID, "nav-btn-practice").click()
 driver.find_element(By.ID,"login-email").send_keys("nkosi1@gmail.com")
 driver.find_element(By.ID,"login-password").send_keys("12345678")
+driver.find_element(By.ID, "login-submit").click()
+time.sleep(5)
+driver.find_element(By.ID, "practice-heading").is_displayed()
 
 time.sleep(2)
