@@ -18,5 +18,6 @@ else:
     assert False
 
 driver.find_element(By.ID, "nav-btn-practice").click()
+driver.find_element(By.ID,"login-email").send_keys("nkosi1@gmail.com")
 
 time.sleep(2)
