@@ -23,5 +23,5 @@ driver.find_element(By.ID,"login-password").send_keys("12345678")
 driver.find_element(By.ID, "login-submit").click()
 time.sleep(10)
 driver.find_element(By.ID, "practice-heading").is_displayed()
-time.sleep(15)
+time.sleep(11)
 
