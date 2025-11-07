@@ -10,7 +10,7 @@ driver.find_element(By.ID, "overview-hero").is_displayed()
 
 WelcomeHeading = driver.find_element(By.XPATH, "//*[@id='overview-hero']/h2").text
 
-if WelcomeHeading == "Learn Automation the Right Way":
+if WelcomeHeading == "Learn Automation the Right Way this is Prathamesh Testing":
     print("Welcome Heading is correct")
     assert True
 else:
