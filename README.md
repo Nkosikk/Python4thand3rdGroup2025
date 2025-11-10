@@ -1,9 +1,26 @@
 # Python Project
 * This is the python project
 
-## Sofyware Requirements
-* Python 3.8+
+## Recommended Software Requirements
+* python - latest version
+* pycharm
 * pip
-* virtualenv
-* git
-  * rgtty
+
+## Dependencies Required
+* Selenium
+* Pytest
+* Allure-pytest
+
+
+
+
+
+## Installation of Dependencies
+* after cloning create the virtual environment using the command below
+  *  `python -m venv venv`
+
+
+
+
+## How to execute the testscfdfbd
+
