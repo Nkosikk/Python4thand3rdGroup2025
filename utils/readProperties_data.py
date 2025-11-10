@@ -17,3 +17,13 @@ class ReadConfig_data():
 
     def getName(self):
         return config.get("user information", "name")
+
+    def getSurname():
+
+        return config.get("user information", "surname")
+
+    def getDevUrl(self):
+        return config.get("URLS", "dev_url")
+
+    def getProfUrl(self):
+        return config.get("URLS", "prof_url")
