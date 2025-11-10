@@ -9,4 +9,7 @@ class ReadConfig_data():
     def getURLS(self):
         return config.get("URLS", "dev_url")
 
+    def getLoginData(self):
+        return config.get("login data", "username")
+
 
