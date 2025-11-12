@@ -18,6 +18,7 @@ class Test_LoginToNdosi:
         self.driver.maximize_window()
         self.hp = HomePage(self.driver)
         self.hp.verifyNdosiHeading()
+        self.hp.clickLearningMaterial()
 
         time.sleep(2)
 
