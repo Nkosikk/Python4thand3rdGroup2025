@@ -1,8 +1,12 @@
 import time
 
+import allure
 import pytest
+from allure_commons.types import AttachmentType
 
 from Pages.homePage import HomePage
+from Pages.loginPage import LoginPage
+from Pages.learningMaterialsPage import LearningMaterialsPage
 from utils.readProperties_data import ReadConfig_data
 
 
@@ -16,10 +20,28 @@ class Test_LoginToNdosi:
         self.driver = setup
         self.driver.get(self.dev_url)
         self.driver.maximize_window()
+
+
         self.hp = HomePage(self.driver)
+        self.lp = LoginPage(self.driver)
+        self.lmp = LearningMaterialsPage(self.driver)
+
+
         self.hp.verifyNdosiHeading()
         self.hp.clickLearningMaterial()
 
-        time.sleep(2)
+        self.lp.verifyNdosiLoginPageHeading()
+        allure.attach(self.driver.get_screenshot_as_png(), name="Login Page", attachment_type=AttachmentType.PNG)
+
+        self.lp.enterEmail(self.username)
+        self.lp.enterPassword(self.password)
+        self.lp.clickLogin()
+
+        #self.lmp.verifyToken()
+
+        self.lmp.verifyNdosiLearningMaterialsPageLogoutButton()
+        allure.attach(self.driver.get_screenshot_as_png(), name="Learning Materials Page",attachment_type=AttachmentType.PNG)
+        self.lmp.clickLogoutButton()
+
 
         self.driver.quit()

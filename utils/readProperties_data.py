@@ -17,3 +17,20 @@ class ReadConfig_data():
 
     def getName(self):
         return config.get("user information", "name")
+
+    def getFirstName(self):
+        return config.get("Registration Info","firstname")
+
+    def getLastName(self):
+        return config.get("Registration Info","lastname")
+
+    def getEmail(self):
+        return config.get("Registration Info","email")
+
+    def getRegistrationPassword(self):
+        return config.get("Registration Info", "password")
+
+    def getConfirmRegistrationPassword(self):
+        return config.get("Registration Info","confirm_password")
+
+
