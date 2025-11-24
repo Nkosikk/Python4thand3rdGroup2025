@@ -11,6 +11,9 @@
 * Pytest
 * Allure-pytest
 
+## How to execute
+* pytest -s -v -m"dev" --alluredir="allure-results" --browser chrome
+
 
 
 
