@@ -33,7 +33,19 @@ class LoginPage:
         element = wait.until(EC.visibility_of_element_located((By.ID, self.btn_Login_id)))
         element.click()
 
-    def clicSignUpLink(self):
+    def clickSignUpLink(self):
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.visibility_of_element_located((By.ID, self.lnk_SignUpLink_id)))
         element.click()
+
+    def acceptPopUp(self):
+        wait = WebDriverWait(self.driver, 10)
+        alert = wait.until(EC.alert_is_present())
+
+        expected_message = "Invalid email or password"
+        actual_message = alert.text
+
+        assert actual_message == expected_message, \
+            f"Unexpected alert text! Expected: '{expected_message}' but got: '{actual_message}'"
+
+        alert.accept()

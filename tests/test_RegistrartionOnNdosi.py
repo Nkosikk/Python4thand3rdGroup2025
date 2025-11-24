@@ -31,7 +31,7 @@ class Test_RegistrationToNdosi:
         self.hp.verifyNdosiHeading()
         self.hp.clickLearningMaterial()
 
-        self.lp.clicSignUpLink()
+        self.lp.clickSignUpLink()
 
         self.sup.verifyNdosiSignUpPageHeading()
         allure.attach(self.driver.get_screenshot_as_png(), name="Empty Registration Page", attachment_type=AttachmentType.PNG)

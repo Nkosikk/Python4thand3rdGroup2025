@@ -4,11 +4,11 @@ import allure
 import pytest
 from allure_commons.types import AttachmentType
 
-from Pages.homePage import HomePage
-from Pages.loginPage import LoginPage
 from Pages.learningMaterialsPage import LearningMaterialsPage
+from Pages.loginPage import LoginPage
 from utils.readProperties_data import ReadConfig_data
 from utils.common_Login import login_to_ndosi
+from utils.browserSetup import setup_browser
 
 
 class Test_LoginToNdosi:
@@ -17,34 +17,30 @@ class Test_LoginToNdosi:
     password = ReadConfig_data().getPassword()
 
     @pytest.mark.dev
-    def test_loginToNdosiWebsite(self, setup):
-        self.driver = setup
-        self.driver.get(self.dev_url)
-        self.driver.maximize_window()
-
-
-        self.hp = HomePage(self.driver)
-        self.lp = LoginPage(self.driver)
+    def test_loginToNdosiWebsiteWithValidCredentials(self, setup):
+        self.driver = setup_browser(setup)
         self.lmp = LearningMaterialsPage(self.driver)
 
-
-        self.hp.verifyNdosiHeading()
-
-        self.hp.clickLearningMaterial()
-
-        self.lp.verifyNdosiLoginPageHeading()
-        allure.attach(self.driver.get_screenshot_as_png(), name="Login Page", attachment_type=AttachmentType.PNG)
-
-        #self.lp.enterEmail(self.username)
-        #self.lp.enterPassword(self.password)
-        #self.lp.clickLogin()
-        #self.lmp.verifyToken()
-
         login_to_ndosi(self.driver, self.username, self.password)
+
+        self.lmp.verifyToken()
 
         self.lmp.verifyNdosiLearningMaterialsPageLogoutButton()
         allure.attach(self.driver.get_screenshot_as_png(), name="Learning Materials Page",attachment_type=AttachmentType.PNG)
         self.lmp.clickLogoutButton()
 
+        self.driver.quit()
+
+    @pytest.mark.dev
+    def test_loginToNdosiWebsiteWithInvalidCredentials(self, setup):
+        self.driver = setup_browser(setup)
+
+        self.lp = LoginPage(self.driver)
+
+        login_to_ndosi(self.driver, self.username, self.password+"wrong")
+
+        self.lp.acceptPopUp()
+
+        allure.attach(self.driver.get_screenshot_as_png(), name="Login Screen Error",attachment_type=AttachmentType.PNG)
 
         self.driver.quit()
