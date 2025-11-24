@@ -5,6 +5,7 @@ from allure_commons.types import AttachmentType
 from Pages.homePage import HomePage
 from Pages.learningMaterialsPage import LearningMaterialsPage
 from Pages.loginPage import LoginPage
+from utils.common_Login import login_to_ndosi
 from utils.readProperties_data import ReadConfig_data
 
 
@@ -31,9 +32,11 @@ class Test_PurchaseAnyDevice:
         self.lp.verifyNdosiLoginPageHeading()
         allure.attach(self.driver.get_screenshot_as_png(), name="Login Page", attachment_type=AttachmentType.PNG)
 
-        self.lp.enterEmail(self.username)
-        self.lp.enterPassword(self.password)
-        self.lp.clickLogin()
+        #self.lp.enterEmail(self.username)
+        #self.lp.enterPassword(self.password)
+        #self.lp.clickLogin()
+
+        login_to_ndosi(self.driver, self.username, self.password)
 
 
         self.driver.quit()
