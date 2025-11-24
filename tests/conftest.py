@@ -20,7 +20,8 @@ def setup(browser):
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser")
+    parser.addoption("--browser", action="store", default="chrome")
+
 
 @pytest.fixture()
 def browser(request):
