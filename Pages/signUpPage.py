@@ -53,9 +53,15 @@ class SignUpPage:
         element.click()
 
     def acceptPopUp(self):
-        time.sleep(5)
-        alert = self.driver.switch_to.alert
-        print("Alert Text:", alert.text)
+        wait = WebDriverWait(self.driver, 10)
+        alert = wait.until(EC.alert_is_present())
+
+        expected_message = "Registration successful! You can now login with your credentials."
+        actual_message = alert.text
+
+        assert actual_message == expected_message, \
+            f"Unexpected alert text! Expected: '{expected_message}' but got: '{actual_message}'"
+
         alert.accept()
 
     

@@ -1,22 +1,20 @@
-import time
-
 import allure
 import pytest
 from allure_commons.types import AttachmentType
 
 from Pages.homePage import HomePage
-from Pages.loginPage import LoginPage
 from Pages.learningMaterialsPage import LearningMaterialsPage
+from Pages.loginPage import LoginPage
 from utils.readProperties_data import ReadConfig_data
 
 
-class Test_LoginToNdosi:
+class Test_PurchaseAnyDevice:
     dev_url = ReadConfig_data().getURLS()
     username = ReadConfig_data().getUsername()
     password = ReadConfig_data().getPassword()
 
     @pytest.mark.dev
-    def test_loginToNdosiWebsite(self, setup):
+    def test_DevicePurchase(self, setup):
         self.driver = setup
         self.driver.get(self.dev_url)
         self.driver.maximize_window()
@@ -37,11 +35,10 @@ class Test_LoginToNdosi:
         self.lp.enterPassword(self.password)
         self.lp.clickLogin()
 
-        self.lmp.verifyToken()
-
-        self.lmp.verifyNdosiLearningMaterialsPageLogoutButton()
-        allure.attach(self.driver.get_screenshot_as_png(), name="Learning Materials Page",attachment_type=AttachmentType.PNG)
-        self.lmp.clickLogoutButton()
-
 
         self.driver.quit()
+
+
+
+
+
