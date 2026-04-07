@@ -30,3 +30,4 @@ class Test_LoginToNdosi:
     def test_loginWithInvalidDetails(self, setup):
         self.driver = setup_Browser(setup)
         loginToNdosi(self.driver, self.username, self.password + "invalid")
+        self.driver.quit()

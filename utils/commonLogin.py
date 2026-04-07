@@ -10,7 +10,7 @@ def loginToNdosi(driver,username,password):
 
     hp = HomePage(driver)
     hp.verifyNdosiHeading()
-    hp.clickLearningMaterial()
+    hp.clickLoginButton()
     login=LoginPage(driver)
     login.enterEmail(username)
     login.enterPassword(password)
