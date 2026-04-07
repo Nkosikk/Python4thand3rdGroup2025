@@ -1,8 +1,9 @@
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC, wait
 
 
 class SignUpPage:
@@ -12,6 +13,7 @@ class SignUpPage:
     txt_EmailField_xpath = "//input[@placeholder='Email']"
     txt_PasswordField_xpath = "//input[@placeholder='Password']"
     txt_ConfirmPasswordField_xpath = "//input[@placeholder='Confirm Password']"
+    ddl_group_xpath = "//select[contains(@id,'register-group')]"
     btn_CreateAccount_xpath = "//button[contains(text(),'Create Account')]"
 
     def __init__(self, driver):
@@ -47,6 +49,11 @@ class SignUpPage:
         element = wait.until(EC.visibility_of_element_located((By.XPATH, self.txt_ConfirmPasswordField_xpath)))
         element.send_keys(confirmpassword)
 
+    def selectGroup(self,group:str):
+        wait = WebDriverWait(self.driver, 10)
+        dropdown = wait.until(EC.visibility_of_element_located((By.XPATH, self.ddl_group_xpath)))
+        Select(dropdown).select_by_visible_text(group)
+
     def clickCreateAccountButton(self):
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.visibility_of_element_located((By.XPATH, self.btn_CreateAccount_xpath)))
@@ -56,7 +63,7 @@ class SignUpPage:
         wait = WebDriverWait(self.driver, 10)
         alert = wait.until(EC.alert_is_present())
 
-        expected_message = "Registration successful! You can now login with your credentials."
+        expected_message = "Registration submitted successfully. Your account is pending admin approval."
         actual_message = alert.text
 
         assert actual_message == expected_message, \

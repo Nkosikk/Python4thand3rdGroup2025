@@ -33,4 +33,8 @@ class ReadConfig_data():
     def getConfirmRegistrationPassword(self):
         return config.get("Registration Info","confirm_password")
 
+    def getGroupName(self):
+        return config.get("Registration Info","group_name")
+
+
 

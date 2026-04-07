@@ -6,21 +6,26 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class LearningMaterialsPage:
-
-    btn_logout_id = "logout-button"
+    btn_pill_xpath = "//button[contains(@class,'user-pill') and .//span[text()='👤']]"
+    btn_logout_xpath = "//button[contains(@class,'nav-dropdown-item') and .//span[normalize-space()='Logout']]"
 
 
     def __init__(self, driver):
         self.driver = driver
 
-    def verifyNdosiLearningMaterialsPageLogoutButton(self):
+    def verifyNdosiLogoutButton(self):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.visibility_of_element_located((By.ID, self.btn_logout_id)))
+        element = wait.until(EC.visibility_of_element_located((By.XPATH, self.btn_pill_xpath)))
         element.is_displayed()
+
+    def clickLogoutDropdown(self):
+        wait = WebDriverWait(self.driver, 10)
+        element = wait.until(EC.visibility_of_element_located((By.XPATH,self.btn_pill_xpath)))
+        element.click()
 
     def clickLogoutButton(self):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.visibility_of_element_located((By.ID, self.btn_logout_id)))
+        element = wait.until(EC.visibility_of_element_located((By.XPATH, self.btn_logout_xpath)))
         element.click()
 
     def verifyToken(self):

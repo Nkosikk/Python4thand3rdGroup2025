@@ -16,6 +16,7 @@ class Test_RegistrationToNdosi:
     email = ReadConfig_data().getEmail()
     password = ReadConfig_data().getRegistrationPassword()
     confirmpassword = ReadConfig_data().getConfirmRegistrationPassword()
+    groupname = ReadConfig_data().getGroupName()
 
     @pytest.mark.dev
     def test_RegistrationToNdosiWebsite(self, setup):
@@ -29,7 +30,7 @@ class Test_RegistrationToNdosi:
 
 
         self.hp.verifyNdosiHeading()
-        self.hp.clickLearningMaterial()
+        self.hp.clickLoginButton()
 
         self.lp.clickSignUpLink()
 
@@ -41,6 +42,7 @@ class Test_RegistrationToNdosi:
         self.sup.enterEmail(self.email)
         self.sup.enterPassword(self.password)
         self.sup.enterConfirmPassword(self.confirmpassword)
+        self.sup.selectGroup(self.groupname)
 
         allure.attach(self.driver.get_screenshot_as_png(), name="Completed Registration Page", attachment_type=AttachmentType.PNG)
         self.sup.clickCreateAccountButton()

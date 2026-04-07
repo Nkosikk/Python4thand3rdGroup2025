@@ -25,8 +25,11 @@ class Test_LoginToNdosi:
 
         self.lmp.verifyToken()
 
-        self.lmp.verifyNdosiLearningMaterialsPageLogoutButton()
+        self.lmp.verifyNdosiLogoutButton()
         allure.attach(self.driver.get_screenshot_as_png(), name="Learning Materials Page",attachment_type=AttachmentType.PNG)
+
+        self.lmp.clickLogoutDropdown()
+
         self.lmp.clickLogoutButton()
 
         self.driver.quit()

@@ -42,7 +42,7 @@ class LoginPage:
         wait = WebDriverWait(self.driver, 10)
         alert = wait.until(EC.alert_is_present())
 
-        expected_message = "Invalid email or password"
+        expected_message = "Invalid credentials. Please try again."
         actual_message = alert.text
 
         assert actual_message == expected_message, \
