@@ -5,7 +5,6 @@ This project is a Selenium-based automation framework using Python and Pytest, f
 ## Project Structure
 The project is organized into several directories:
 
-- **Basics/**: Basic Python practice scripts.
 - **Configurations/**: Configuration files, such as `data.ini` for managing test data and environment settings.
 - **Pages/**: Contains Page Object classes representing different pages of the application (e.g., `loginPage.py`, `homePage.py`).
 - **tests/**: Contains test scripts and `conftest.py` for shared fixtures and setup.
