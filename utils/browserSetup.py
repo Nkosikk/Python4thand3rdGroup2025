@@ -6,4 +6,4 @@ def setup_browser(driver):
     driver.get(dev_url)
     driver.maximize_window()
     return driver
-    d
+
